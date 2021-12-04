@@ -34,7 +34,7 @@ export function {0}({{{1}
                 identifierName,
                 useBlazorParameterList);
 
-            var reactComponentFile = $"{outputDirectory}/{componentDescriptor.Name}.js";
+            var reactComponentFile = $"{outputDirectory}/generated/{componentDescriptor.Name}.js";
 
             File.WriteAllText(reactComponentFile, componentContents);
         }
