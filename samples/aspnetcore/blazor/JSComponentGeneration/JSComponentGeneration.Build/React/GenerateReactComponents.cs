@@ -23,6 +23,9 @@ namespace JSComponentGeneration.Build.React
         [Required]
         public string JavaScriptComponentOutputDirectory { get; set; }
 
+        [Required]
+        public string BuildAssemblyOutputPath { get; set; }
+
         public override bool Execute()
         {
             var assemblyFilePath = $"{OutputPath}/{AssemblyName}.dll";
@@ -57,7 +60,7 @@ namespace JSComponentGeneration.Build.React
             {
                 try
                 {
-                    var blazorComponentSourcePath = $"{OutputPath}/js/{BlazorHelperFile}";
+                    var blazorComponentSourcePath = $"{BuildAssemblyOutputPath}/js/{BlazorHelperFile}";
                     File.Copy(blazorComponentSourcePath, blazorHelperDestinationPath);
                 }
                 catch (Exception e)
