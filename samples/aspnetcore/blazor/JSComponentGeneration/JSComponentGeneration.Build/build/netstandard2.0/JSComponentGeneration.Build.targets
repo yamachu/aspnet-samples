@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
       <_TaskDll>$(MSBuildThisFileDirectory)JSComponentGeneration.Build.dll</_TaskDll>
+      <!-- build/netstandard2.0/JSComponentGeneration.Build.targets からの相対パス -->
       <_TaskDll Condition="!exists('$(_TaskDll)')">../../../JSComponentGeneration.Build/bin/$(Configuration)/netstandard2.0/JSComponentGeneration.Build.dll</_TaskDll>
   </PropertyGroup>
 
