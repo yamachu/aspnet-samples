@@ -9,7 +9,7 @@ namespace JSComponentGeneration.Build.React
 {
     public class GenerateReactComponents : Task
     {
-        private const string BlazorHelperFile = "blazor-react.js";
+        private const string BlazorHelperFile = "blazor-react.jsx";
 
         [Required]
         public string OutputPath { get; set; }
