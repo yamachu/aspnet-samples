@@ -10,6 +10,7 @@ namespace JSComponentGeneration.Build.React
     public class GenerateReactComponents : Task
     {
         private const string BlazorHelperFile = "blazor-react.jsx";
+        private const string BlazorTypedHelperFile = "blazor-react.d.ts";
 
         [Required]
         public string OutputPath { get; set; }
@@ -66,6 +67,22 @@ namespace JSComponentGeneration.Build.React
                 catch (Exception e)
                 {
                     Log.LogError($"Could not copy the '{BlazorHelperFile}' file: {e.Message}");
+                    return false;
+                }
+            }
+
+            var blazorTypedHelperDestinationPath = $"{JavaScriptComponentOutputDirectory}/{BlazorTypedHelperFile}";
+
+            if (!File.Exists(blazorTypedHelperDestinationPath))
+            {
+                try
+                {
+                    var blazorComponentSourcePath = $"{BuildAssemblyOutputPath}/js/{BlazorTypedHelperFile}";
+                    File.Copy(blazorComponentSourcePath, blazorTypedHelperDestinationPath);
+                }
+                catch (Exception e)
+                {
+                    Log.LogError($"Could not copy the '{BlazorTypedHelperFile}' file: {e.Message}");
                     return false;
                 }
             }
