@@ -17,6 +17,11 @@
     <ProjectReference Include="..\JSComponentGeneration\JSComponentGeneration.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <ReactTemplateJSDir>..\react-app-with-blazor\src</ReactTemplateJSDir>
+    <BuildAssemblyOutputPath>..\JSComponentGeneration.Build\bin\$(Configuration)\netstandard2.0</BuildAssemblyOutputPath>
+  </PropertyGroup>
+
   <Import Project="..\JSComponentGeneration.Build\build\netstandard2.0\JSComponentGeneration.build.targets" />
 
 </Project>

@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
       <_TaskDll>$(MSBuildThisFileDirectory)JSComponentGeneration.Build.dll</_TaskDll>
+      <!-- build/netstandard2.0/JSComponentGeneration.Build.targets からの相対パス -->
       <_TaskDll Condition="!exists('$(_TaskDll)')">../../../JSComponentGeneration.Build/bin/$(Configuration)/netstandard2.0/JSComponentGeneration.Build.dll</_TaskDll>
   </PropertyGroup>
 
@@ -15,11 +16,11 @@
     </ItemGroup>
   </Target>
 
-  <UsingTask TaskName="GenerateAngularComponents" AssemblyFile="$(_TaskDll)" />
+  <!-- <UsingTask TaskName="GenerateAngularComponents" AssemblyFile="$(_TaskDll)" /> -->
   <UsingTask TaskName="GenerateReactComponents" AssemblyFile="$(_TaskDll)" />
 
   <Target Name="GenerateJavaScriptComponents" AfterTargets="CopyFilesToOutputDirectory" DependsOnTargets="HackRazorSdk;ResolveTagHelperRazorGenerateInputs">
-    <GenerateAngularComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="..\angular-app-with-blazor\src\app" />
-    <GenerateReactComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="..\react-app-with-blazor\src" />
+    <!-- <GenerateAngularComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="..\angular-app-with-blazor\src\app" /> -->
+    <GenerateReactComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="$(ReactTemplateJSDir)" BuildAssemblyOutputPath="$(BuildAssemblyOutputPath)" />
   </Target>
 </Project>

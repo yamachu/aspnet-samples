@@ -9,7 +9,8 @@ namespace JSComponentGeneration.Build.React
 {
     public class GenerateReactComponents : Task
     {
-        private const string BlazorHelperFile = "blazor-react.js";
+        private const string BlazorHelperFile = "blazor-react.jsx";
+        private const string BlazorTypedHelperFile = "blazor-react.d.ts";
 
         [Required]
         public string OutputPath { get; set; }
@@ -22,6 +23,9 @@ namespace JSComponentGeneration.Build.React
 
         [Required]
         public string JavaScriptComponentOutputDirectory { get; set; }
+
+        [Required]
+        public string BuildAssemblyOutputPath { get; set; }
 
         public override bool Execute()
         {
@@ -57,12 +61,28 @@ namespace JSComponentGeneration.Build.React
             {
                 try
                 {
-                    var blazorComponentSourcePath = $"{OutputPath}/js/{BlazorHelperFile}";
+                    var blazorComponentSourcePath = $"{BuildAssemblyOutputPath}/js/{BlazorHelperFile}";
                     File.Copy(blazorComponentSourcePath, blazorHelperDestinationPath);
                 }
                 catch (Exception e)
                 {
                     Log.LogError($"Could not copy the '{BlazorHelperFile}' file: {e.Message}");
+                    return false;
+                }
+            }
+
+            var blazorTypedHelperDestinationPath = $"{JavaScriptComponentOutputDirectory}/{BlazorTypedHelperFile}";
+
+            if (!File.Exists(blazorTypedHelperDestinationPath))
+            {
+                try
+                {
+                    var blazorComponentSourcePath = $"{BuildAssemblyOutputPath}/js/{BlazorTypedHelperFile}";
+                    File.Copy(blazorComponentSourcePath, blazorTypedHelperDestinationPath);
+                }
+                catch (Exception e)
+                {
+                    Log.LogError($"Could not copy the '{BlazorTypedHelperFile}' file: {e.Message}");
                     return false;
                 }
             }

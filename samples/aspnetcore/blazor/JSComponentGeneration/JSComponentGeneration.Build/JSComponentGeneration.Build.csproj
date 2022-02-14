@@ -20,7 +20,10 @@
     <None Update="js\blazor-adapter.component.ts">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="js\blazor-react.js">
+    <None Update="js\blazor-react.jsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="js\blazor-react.d.ts">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
