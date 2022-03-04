@@ -19,6 +19,7 @@
 
   <PropertyGroup>
     <ReactTemplateJSDir>..\react-app-with-blazor\src</ReactTemplateJSDir>
+    <VueTemplateJSDir>..\vue-app-with-blazor\src</VueTemplateJSDir>
     <BuildAssemblyOutputPath>..\JSComponentGeneration.Build\bin\$(Configuration)\netstandard2.0</BuildAssemblyOutputPath>
   </PropertyGroup>
 

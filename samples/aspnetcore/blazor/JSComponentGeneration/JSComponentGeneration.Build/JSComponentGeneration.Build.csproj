@@ -26,6 +26,9 @@
     <None Update="js\blazor-react.d.ts">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="js\blazor-vue.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
