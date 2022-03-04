@@ -1,11 +1,12 @@
 # JavaScript Component Generation
 
-This sample demonstates how Blazor components can be automatically wrapped as components in JavaScript-based SPA frameworks like Angular and React.
+This sample demonstrates how Blazor components can be automatically wrapped as components in JavaScript-based SPA frameworks like Angular, React and Vue.
 
 ## Running the Angular sample
 
 Clone this repo. Then, in a command prompt, execute:
 
+ * `dotnet build JSComponentGeneration.Build`
  * `cd BlazorAppGeneratingJSComponents`
  * `dotnet watch`
 
@@ -21,6 +22,7 @@ Now when you browse to http://localhost:4200/, you'll see an Angular application
 
 Clone this repo. Then, in a command prompt, execute:
 
+ * `dotnet build JSComponentGeneration.Build`
  * `cd BlazorAppGeneratingJSComponents`
  * `dotnet watch`
 
@@ -32,6 +34,22 @@ Leave that running, and open a second command prompt, and execute:
 
 Now when you browse to http://localhost:3000/, you'll see a React application that dynamically renders Blazor WebAssembly components, passing parameters to them.
 
+## Running the Vue sample
+
+Clone this repo. Then, in a command prompt, execute:
+
+ * `dotnet build JSComponentGeneration.Build`
+ * `cd BlazorAppGeneratingJSComponents`
+ * `dotnet watch`
+
+Leave that running, and open a second command prompt, and execute:
+
+ * `cd vue-app-with-blazor`
+ * `yarn install`
+ * `yarn start`
+
+Now when you browse to http://localhost:3000/, you'll see a Vue application that dynamically renders Blazor WebAssembly components, passing parameters to them.
+
 ## Converting a Blazor Component to an Angular or React component
 To indicate to the MSBuild tasks that an Angular or React wrapper should be generated for a Blazor component, you can add these attributes to the component:
 
@@ -39,6 +57,7 @@ _MyComponent.razor:_
 ```razor
 @attribute [GenerateAngular] // Generate an Angular component
 @attribute [GenerateReact]   // Generate a React component
+@attribute [GenerateVue]     // Generate a Vue component
 
 // ...
 ```
@@ -51,6 +70,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.RootComponents.RegisterForAngular<MyComponent>(); // Register for Angular
 builder.RootComponents.RegisterForReact<MyComponent>();   // Register for React
+builder.RootComponents.RegisterForVue<MyComponent>();     // Register for Vue
 
 // ...
 ```
@@ -61,6 +81,6 @@ A generated JS component will accept parameters correlating with the parameters 
 * `EventCallback` and `EventCallback<T>` types
 
 ## Configuring the JS component generation build task
-The tasks that generate the React and Angular components can be configured in `JSComponentGeneration.Build/build/netstandard2.0/JSComponentGeneration.Build.targets` (via `GenerateAngularComponents` and `GenerateReactComponents`). The main property of interest is `JavaScriptComponentOutputDirectory`, which lets you specify the directory where the JS components should be generated.
+The tasks that generate the React, Angular and Vue components can be configured in `JSComponentGeneration.Build/build/netstandard2.0/JSComponentGeneration.Build.targets` (via `GenerateAngularComponents`, `GenerateReactComponents` and `GenerateVueComponents`). The main property of interest is `JavaScriptComponentOutputDirectory`, which lets you specify the directory where the JS components should be generated.
 
-If you would like to change _how_ the components are generated, you can modify the tasks themselves, located in `JSComponentGeneration.Build/Angular/GenerateAngularComponents` and `JSComponentGeneration.Build/React/GenerateReactComponents` for Angular and React, respectively. You may want to do this if, for example, you have a React project built with TypeScript (this sample generates React components in JavaScript).
+If you would like to change _how_ the components are generated, you can modify the tasks themselves, located in `JSComponentGeneration.Build/Angular/GenerateAngularComponents`, `JSComponentGeneration.Build/React/GenerateReactComponents` and `JSComponentGeneration.Build/Vue/GenerateVueComponents` for Angular, React and Vue respectively. You may want to do this if, for example, you have a React project built with TypeScript (this sample generates React components in JavaScript).

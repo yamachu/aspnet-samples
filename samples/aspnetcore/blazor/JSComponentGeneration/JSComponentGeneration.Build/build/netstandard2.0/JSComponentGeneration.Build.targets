@@ -17,9 +17,11 @@
 
   <UsingTask TaskName="GenerateAngularComponents" AssemblyFile="$(_TaskDll)" />
   <UsingTask TaskName="GenerateReactComponents" AssemblyFile="$(_TaskDll)" />
+  <UsingTask TaskName="GenerateVueComponents" AssemblyFile="$(_TaskDll)" />
 
   <Target Name="GenerateJavaScriptComponents" AfterTargets="CopyFilesToOutputDirectory" DependsOnTargets="HackRazorSdk;ResolveTagHelperRazorGenerateInputs">
     <GenerateAngularComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="..\angular-app-with-blazor\src\app" />
     <GenerateReactComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="..\react-app-with-blazor\src" />
+    <GenerateVueComponents OutputPath="$(OutputPath)" IntermediateOutputPath="$(IntermediateOutputPath)" AssemblyName="$(AssemblyName)" JavaScriptComponentOutputDirectory="..\vue-app-with-blazor\src" />
   </Target>
 </Project>
